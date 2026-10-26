@@ -4,8 +4,8 @@ run = [".venv/bin/python", "-m", "modeling.deployment", "serve"]
 
 [deployment]
 deploymentTarget = "cloudrun"
-build = ["bash", "-c", "python3.12 -m venv .venv && .venv/bin/python -m modeling.deployment prepare"]
-run = [".venv/bin/python", "-m", "modeling.deployment", "serve"]
+build = ["bash", "-c", "python3.12 -m venv --copies .deploy-venv && .deploy-venv/bin/python -m modeling.deployment prepare"]
+run = [".deploy-venv/bin/python", "-m", "modeling.deployment", "serve"]
 
 [env]
 PIP_USER = "false"
@@ -27,3 +27,14 @@ enabledForHosting = false
 [nix]
 channel = "stable-25_05"
 packages = ["python312"]
+
+[workflows]
+runButton = "CPSS server"
+
+[[workflows.workflow]]
+name = "CPSS server"
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = ".venv/bin/python -m modeling.deployment serve"
