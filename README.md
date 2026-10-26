@@ -92,4 +92,3 @@ tags do not prove an approach unsuitable. Retrieval relevance metrics remain
 unavailable until people judge the candidate pool; classifier F1 measures a
 different task. See the linked reports for development limitations and the
 blocked browser visual check.
-

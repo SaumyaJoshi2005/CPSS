@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Find competitive programming problems by algorithm or approach, with original source evidence.">
+    <title>CPSS · Problem explorer</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body class="search-page">
+    <a class="skip-link" href="#query">Skip to search</a>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="CPSS home">
+        <span class="logo" aria-hidden="true">{ }</span>
+        <span>CPSS<span class="brand-sub">Competitive programming, discovered.</span></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a class="nav-active" href="/" aria-current="page">Explorer</a>
+        <a href="/review" data-feature="review" hidden>Relevance review <span aria-hidden="true">↗</span></a>
+        <span class="local-pill"><span class="live-dot" aria-hidden="true"></span> Local workspace</span>
+      </nav>
+    </header>
+
+    <main class="explorer">
+      <aside class="search-sidebar" aria-label="Search controls">
+        <section class="search-panel">
+          <div class="panel-heading">
+            <span class="section-kicker">YOUR SEARCH</span>
+            <button class="reset-button" id="reset-search" type="button">Clear</button>
+          </div>
+          <form id="search-form">
+            <label class="query-label" for="query">Start with an approach</label>
+            <p class="field-help" id="query-help">Name a technique, describe a task, or combine ideas.</p>
+            <textarea id="query" rows="5" maxlength="3000" required aria-describedby="query-help"
+              placeholder="e.g. Binary search on the answer with a greedy feasibility check."></textarea>
+
+            <div class="field-group">
+              <label for="method">Search method</label>
+              <select id="method">
+                <option value="hybrid">Hybrid · keyword + semantic</option>
+                <option value="bm25">BM25 · keyword matching</option>
+                <option value="dense">Dense · semantic similarity</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="view">Search within</label>
+              <select id="view">
+                <option value="editorial">Statements + editorials</option>
+                <option value="statement">Statements only</option>
+              </select>
+            </div>
+
+            <fieldset class="rating-filter">
+              <legend>Problem rating <span>Optional</span></legend>
+              <div class="rating-inputs">
+                <div>
+                  <label for="rating-min">From</label>
+                  <input id="rating-min" type="number" min="0" max="5000" step="100" placeholder="Any">
+                </div>
+                <span class="range-divider" aria-hidden="true">—</span>
+                <div>
+                  <label for="rating-max">To</label>
+                  <input id="rating-max" type="number" min="0" max="5000" step="100" placeholder="Any">
+                </div>
+              </div>
+            </fieldset>
+
+            <details class="advanced">
+              <summary>Fine-tune ranking</summary>
+              <label class="check" for="tag-boost">
+                <input id="tag-boost" type="checkbox">
+                Boost original tags that match explicitly named techniques
+              </label>
+              <label class="check" for="classifier-boost" id="classifier-option">
+                <input id="classifier-boost" type="checkbox">
+                Use classifier suggestions <span class="experimental-label">Experimental</span>
+              </label>
+              <p>Soft boosts reorder candidates. Classifier suggestions never exclude a problem.</p>
+            </details>
+
+            <button class="primary" id="search-button" type="submit">
+              Find problems <span aria-hidden="true">↗</span>
+            </button>
+          </form>
+        </section>
+
+        <section class="corpus-card" aria-label="Searchable corpus">
+          <span class="section-kicker">THE COLLECTION</span>
+          <div class="coverage" id="coverage">Loading searchable coverage…</div>
+          <div class="corpus-source"><span class="source-dot" aria-hidden="true"></span> Codeforces · via Open R1</div>
+        </section>
+        <p class="sidebar-note">Original tags are useful clues, not a complete list of every valid solution approach.</p>
+      </aside>
+
+      <section class="search-workspace" aria-labelledby="explorer-title">
+        <header class="workspace-heading">
+          <div>
+            <p class="eyebrow">COMPETITIVE PROGRAMMING SEARCH</p>
+            <h1 id="explorer-title">Problem explorer<span class="title-dot">.</span></h1>
+            <p class="workspace-description">Find problems by the approach you want to practice.</p>
+          </div>
+          <span class="workspace-badge">Algorithm-aware search</span>
+        </header>
+
+        <div class="results-toolbar">
+          <div class="status" id="status" role="status" aria-live="polite">Ready when you are</div>
+        </div>
+        <div class="interpretation" id="interpretation"></div>
+
+        <section class="welcome-state" id="welcome" aria-labelledby="welcome-title">
+          <div class="discovery-graphic" aria-hidden="true">
+            <svg viewBox="0 0 330 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M67 44L146 71M67 108L146 81M184 75L258 37M184 75L264 111" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M67 44L67 108M258 37L264 111" stroke="currentColor" stroke-dasharray="4 5"/>
+              <circle cx="67" cy="44" r="9" fill="#e4f4ec" stroke="currentColor"/>
+              <circle cx="67" cy="108" r="6" fill="#fff" stroke="currentColor"/>
+              <circle cx="258" cy="37" r="7" fill="#fff" stroke="currentColor"/>
+              <circle cx="264" cy="111" r="10" fill="#e4f4ec" stroke="currentColor"/>
+              <rect x="137" y="47" width="56" height="56" rx="17" fill="#153c35"/>
+              <circle cx="162" cy="71" r="9" stroke="#a1edc7" stroke-width="2"/>
+              <path d="M169 78L177 86" stroke="#a1edc7" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="114" cy="122" r="3" fill="#c9d8cf"/>
+              <circle cx="215" cy="18" r="3" fill="#c9d8cf"/>
+            </svg>
+          </div>
+          <p class="welcome-kicker">TRY A STARTER QUERY</p>
+          <h2 id="welcome-title">Which approach are you exploring?</h2>
+          <p class="welcome-description">Search the task behind the story. We’ll bring back problems<br class="desktop-break"> with original statements and editorial evidence to explore.</p>
+          <div class="starter-grid">
+            <button class="example starter-card" type="button" data-query="DSU with connectivity queries.">
+              <span class="starter-icon" aria-hidden="true">{ }</span>
+              <span class="starter-title">Name a technique <span aria-hidden="true">↗</span></span>
+              <span class="starter-query">DSU with connectivity queries</span>
+            </button>
+            <button class="example starter-card" type="button" data-query="Maintain connected groups as new connections are added.">
+              <span class="starter-icon" aria-hidden="true">≋</span>
+              <span class="starter-title">Describe the task <span aria-hidden="true">↗</span></span>
+              <span class="starter-query">Keep groups connected as edges are added</span>
+            </button>
+            <button class="example starter-card" type="button" data-query="Binary search on the answer with a greedy feasibility check.">
+              <span class="starter-icon" aria-hidden="true">⌘</span>
+              <span class="starter-title">Combine ideas <span aria-hidden="true">↗</span></span>
+              <span class="starter-query">Binary search + greedy feasibility</span>
+            </button>
+          </div>
+          <p class="welcome-footnote">No exact wording needed. Your natural-language description works, too.</p>
+        </section>
+
+        <div class="results" id="results" aria-busy="false" aria-label="Search results"></div>
+        <footer class="workspace-footer">
+          <span>Codeforces problems. Original editorial evidence.</span>
+          <span>Original source evidence. Similarity scores, not confidence.</span>
+        </footer>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+name: Python checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.lock
+            modeling/requirements.lock
+            modeling/deployment/requirements.lock
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install -r requirements.lock -r modeling/requirements.lock -r modeling/deployment/requirements.lock
+          python -m pip install --no-deps -e .
+          python -m pip check
+      - name: Offline synthetic tests (no corpus or model download)
+        run: python -m pytest tests modeling/tests modeling/deployment/tests -m 'not mongo' -q
+      - name: Browser script syntax
+        run: |
+          node --check modeling/application/static/app.js
+          node --check modeling/application/static/review.js
+      - name: GitHub candidate preflight
+        run: python -m modeling.deployment github-check

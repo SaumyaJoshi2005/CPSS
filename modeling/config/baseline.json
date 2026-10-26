@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "export_path": "exports/openr1-complete-2026-10-26-v2",
+  "expected_manifest_sha256": "2572bdbe3448a230132ce759722aa5353d4f5bb57dc204597a0447e2a82cdc93",
+  "expected_split_counts": {"train": 3716, "validation": 467, "test": 465},
+  "taxonomy_path": "modeling/config/taxonomy-v1.json",
+  "artifacts_path": "modeling/artifacts",
+  "cache_path": "modeling/.cache",
+  "seed": 42,
+  "labels": {"min_train_positive": 30, "min_train_negative": 30},
+  "features": {"analyzer": "word", "ngram_range": [1, 2], "min_df": 2, "max_df": 0.98,
+    "max_features": 40000, "sublinear_tf": true, "lowercase": true,
+    "strip_accents": null, "token_pattern": "(?u)\\b\\w+\\b"},
+  "classifier": {"solver": "liblinear", "max_iter": 1000, "tol": 0.0001,
+    "C_candidates": [1.0, 3.0, 10.0], "class_weight_candidates": [null, "balanced"]},
+  "thresholds": {"grid": [0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8],
+    "mode": "per_label", "min_validation_positive": 5, "min_validation_negative": 5},
+  "audit": {"representative_examples_per_label": 3, "excerpt_characters": 200,
+    "future_token_budgets": [256, 512, 1024, 2048]},
+  "context_pilot": {"size": 100, "case_study_minimum": 10, "case_studies": ["dsu", "binary search"]}
+}

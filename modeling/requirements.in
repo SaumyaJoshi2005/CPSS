@@ -1,0 +1,3 @@
+scikit-learn>=1.6,<2
+joblib>=1.4,<2
+# Reuses the root project's jsonschema, pytest and corpus utilities.

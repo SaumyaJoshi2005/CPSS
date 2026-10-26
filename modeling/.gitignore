@@ -1,0 +1,7 @@
+artifacts/
+.cache/
+__pycache__/
+.pytest_cache/
+*.joblib
+*.npz
+

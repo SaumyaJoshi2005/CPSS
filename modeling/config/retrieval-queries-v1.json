@@ -1,0 +1,30 @@
+{
+  "version": "cpss-development-queries-v1",
+  "purpose": "Fixed development examples, not a standardized relevance benchmark or classifier test set",
+  "queries": [
+    {"query_id": "q01", "category": "named", "text": "DSU with connectivity queries."},
+    {"query_id": "q02", "category": "named", "text": "Binary search on the answer."},
+    {"query_id": "q03", "category": "named", "text": "Dynamic programming for counting sequences."},
+    {"query_id": "q04", "category": "named", "text": "Dijkstra shortest paths in a weighted graph."},
+    {"query_id": "q05", "category": "named", "text": "Two pointers on a sorted array."},
+    {"query_id": "q06", "category": "named", "text": "Number theory using divisors and prime factorization."},
+    {"query_id": "q07", "category": "named", "text": "String hashing for substring comparisons."},
+    {"query_id": "q08", "category": "named", "text": "Maximum flow for assigning resources under capacity constraints."},
+    {"query_id": "q09", "category": "unnamed", "text": "Maintain connected groups as new connections are added."},
+    {"query_id": "q10", "category": "unnamed", "text": "Find the largest feasible limit when a budget constraint can be checked efficiently."},
+    {"query_id": "q11", "category": "unnamed", "text": "Break a sequence into overlapping subproblems and reuse previously computed answers."},
+    {"query_id": "q12", "category": "unnamed", "text": "Find a cheapest route between cities when every road has a nonnegative cost."},
+    {"query_id": "q13", "category": "unnamed", "text": "Maintain a contiguous window with at most k distinct elements while scanning an array."},
+    {"query_id": "q14", "category": "unnamed", "text": "Compare many substrings quickly to detect equal segments."},
+    {"query_id": "q15", "category": "unnamed", "text": "Count valid integer pairs by grouping their common divisors."},
+    {"query_id": "q16", "category": "unnamed", "text": "Answer range sum queries while values in an array are updated."},
+    {"query_id": "q17", "category": "combined", "text": "Binary search on the answer with a greedy feasibility check."},
+    {"query_id": "q18", "category": "combined", "text": "DSU with offline queries sorted by edge weight, rating 1400-2200."},
+    {"query_id": "q19", "category": "combined", "text": "Dynamic programming over bitmasks for choosing a subset."},
+    {"query_id": "q20", "category": "combined", "text": "Shortest paths combined with binary search over an allowed edge threshold."},
+    {"query_id": "q21", "category": "combined", "text": "Tree dynamic programming to optimize choices across subtrees."},
+    {"query_id": "q22", "category": "combined", "text": "String hashing and binary search to find a longest matching substring."},
+    {"query_id": "q23", "category": "combined", "text": "Combinatorics and dynamic programming for counting arrangements modulo a prime."},
+    {"query_id": "q24", "category": "combined", "text": "Geometry with binary search on a distance and a feasibility predicate."}
+  ]
+}

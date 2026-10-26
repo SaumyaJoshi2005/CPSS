@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <title>CPSS · Blinded relevance review</title>
+    <link href="/style.css" rel="stylesheet"/>
+    <script defer="" src="/review.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/"><span class="logo">CP</span><span>CPSS<span class="brand-sub">Relevance review</span></span></a>
+      <nav><a href="/">Back to search</a><span class="local-pill">Human review workspace</span></nav>
+    </header>
+    <main>
+      <p class="eyebrow">BLINDED QUERY–PROBLEM JUDGMENTS</p>
+      <h1>Review relevance,<br/>with the source in view.</h1>
+      <p class="lede">Originating methods, ranks and scores are hidden. Judge the complete query, not tag overlap.</p>
+      <p class="review-status" id="progress">Loading review queue…</p>
+      <div class="status" id="review-error"></div>
+      <div class="review-layout" id="workspace">
+        <section class="review-panel">
+          <p class="eyebrow">USER QUERY</p>
+          <p class="review-query" id="review-query"></p>
+          <h2 id="review-title"></h2>
+          <p><a id="review-link" rel="noopener noreferrer" target="_blank">Open original problem ↗</a></p>
+          <label for="reviewer">Your reviewer name or identifier</label>
+          <input id="reviewer" maxlength="80" placeholder="Enter your name" type="text"/>
+          <label for="rationale">Why this relevance grade?</label>
+          <textarea id="rationale" placeholder="Which query requirements are supported, partially met or absent?" rows="4"></textarea>
+          <label class="check">
+            <input id="attestation" type="checkbox"/>
+             I personally reviewed this query and the source evidence.
+          </label>
+          <div class="grade-buttons">
+            <button data-grade="2">2 · Directly relevant</button>
+            <button data-grade="1">1 · Partially relevant</button>
+            <button data-grade="0">0 · Irrelevant</button>
+          </div>
+          <p class="review-status">Each decision records your self-attestation and rationale. Passing a schema check is not a relevance review. Original corpus labels remain unchanged.</p>
+        </section>
+        <section class="review-panel">
+          <h2>Original source evidence</h2>
+          <details open="">
+            <summary>Statement</summary>
+            <pre class="source-text" id="review-statement"></pre>
+          </details>
+          <details>
+            <summary>Editorial</summary>
+            <pre class="source-text" id="review-editorial"></pre>
+          </details>
+          <p class="review-status" id="review-source"></p>
+        </section>
+      </div>
+      <footer>Grades support a development retrieval evaluation, separate from classifier tag-prediction metrics. Do not submit automatic judgments as human decisions.</footer>
+    </main>
+  </body>
+</html>

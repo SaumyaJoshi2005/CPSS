@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Automated error-review proposals, never human approvals",
+  "type": "object",
+  "required": ["schema_version", "cases", "case_count", "unique_problems", "human_reviewed_cases", "source_manifest_sha256"],
+  "properties": {
+    "schema_version": {"const": "error-review-v1"},
+    "source_manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "case_count": {"type": "integer", "minimum": 1},
+    "unique_problems": {"type": "integer", "minimum": 1},
+    "human_reviewed_cases": {"const": 0},
+    "cases": {"type": "array", "minItems": 1, "items": {
+      "type": "object",
+      "required": ["case_id", "problem_id", "split", "focus_label", "observed_tag_bucket", "original_tags", "predictions", "source_references", "supporting_signals", "review_outcome", "review_completed_by", "human_reviewed", "outcome_status", "original_labels_modified"],
+      "properties": {
+        "case_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "problem_id": {"type": "string", "pattern": "^codeforces:[1-9][0-9]*:[A-Z][0-9]*$"},
+        "split": {"const": "validation"},
+        "focus_label": {"enum": ["dsu", "binary search"]},
+        "observed_tag_bucket": {"enum": ["false_positive", "false_negative", "true_positive", "true_negative"]},
+        "original_tags": {"type": "array", "items": {"type": "string"}},
+        "predictions": {"type": "object", "minProperties": 2, "additionalProperties": {
+          "type": "object", "required": ["score", "threshold", "selected"],
+          "properties": {"score": {"type": "number", "minimum": 0, "maximum": 1}, "threshold": {"type": "number", "minimum": 0, "maximum": 1}, "selected": {"type": "boolean"}}
+        }},
+        "source_references": {"type": "object", "required": ["statement_version_id", "editorial_version_id", "accepted_solution_versions"]},
+        "supporting_signals": {"type": "array", "items": {
+          "type": "object", "required": ["source_kind", "version_id", "quote", "start", "end", "match"],
+          "properties": {"source_kind": {"enum": ["editorial", "accepted_code"]}, "quote": {"type": "string", "minLength": 1}, "start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 1}}
+        }},
+        "review_outcome": {"enum": ["model_error", "supported_alternative_approach", "potentially_incomplete_tagging", "unresolved"]},
+        "review_completed_by": {"const": "automated_rules"},
+        "human_reviewed": {"const": false},
+        "outcome_status": {"const": "automated_proposal_requires_human_confirmation"},
+        "original_labels_modified": {"const": false}
+      }
+    }}
+  }
+}

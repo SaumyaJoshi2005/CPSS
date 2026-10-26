@@ -1,0 +1,1 @@
+{"status":"OK","result":{"id":799002,"authorHandle":"synthetic-fixture-author","content":"<h2><a href='/contest/99002/problem/A'>A — Easy</a></h2><p>For each position, check all smaller preceding values using dynamic programming.</p><h2><a href='/contest/99002/problem/B'>B — Hard</a></h2><p>Maintain minimal tails and use binary search for every value.</p>"}}

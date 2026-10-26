@@ -1,0 +1,22 @@
+entrypoint = "modeling/deployment/__main__.py"
+modules = ["python-3.12"]
+run = ["python", "-m", "modeling.deployment", "serve"]
+
+[deployment]
+deploymentTarget = "cloudrun"
+build = ["python", "-m", "modeling.deployment", "prepare"]
+run = ["python", "-m", "modeling.deployment", "serve"]
+
+[env]
+CPSS_MODE = "deployment"
+CPSS_PORT = "8080"
+CPSS_RUNTIME_DIR = "runtime"
+CPSS_FRAME_ORIGINS = "https://replit.com"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
+
+[packager.features]
+guessImports = false
+enabledForHosting = false

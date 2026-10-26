@@ -1,0 +1,22 @@
+{
+  "discovery": {
+    "checked_on": "2026-10-26",
+    "method": "Explicit official editorial URLs discovered through web search; contents fetched with blogEntry.view",
+    "source_urls": [
+      "https://codeforces.com/blog/entry/158113",
+      "https://codeforces.com/blog/entry/157917",
+      "https://codeforces.com/blog/entry/157590",
+      "https://codeforces.com/blog/entry/157140"
+    ]
+  },
+  "excluded_candidates": [
+    {"blog_id": 157634, "reason": "Tutorial is loading placeholders; no verified problem sections"}
+  ],
+  "entries": [
+    {"contest_id": 2277, "blog_id": 158113},
+    {"contest_id": 2261, "blog_id": 157917},
+    {"contest_id": 2271, "blog_id": 157590},
+    {"contest_id": 2268, "blog_id": 157140},
+    {"contest_id": 2269, "blog_id": 157140}
+  ]
+}
