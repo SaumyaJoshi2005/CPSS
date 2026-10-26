@@ -8,7 +8,8 @@ classifier boosts are disabled. The original `python -m modeling serve` at
 
 See [Replit setup](REPLIT.md), [GitHub handoff](GITHUB.md),
 [actual verification](VALIDATION.md) and [upstream notices](THIRD_PARTY_NOTICES.md).
-No remote repository, release, Replit project or paid resource has been created.
+Source, the runtime release and a working Replit Preview are now available;
+see [actual publication status](PUBLISHED.md) for verified checks and hosting status.
 
 ## Package and test on Windows
 

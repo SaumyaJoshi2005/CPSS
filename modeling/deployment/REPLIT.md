@@ -3,19 +3,23 @@
 Official [configuration](https://docs.replit.com/features/project-setup/configuration),
 [dependencies](https://docs.replit.com/features/project-setup/dependency-management)
 and [deployment types](https://docs.replit.com/features/publishing/deployment-types)
-were checked on 27 October 2026. No connected Replit account/project was available;
-Preview and an actual published URL remain **unverified**. Nothing was provisioned.
+were checked on 27 October 2026. A Replit workspace and Preview are now verified.
+See [actual publication status](PUBLISHED.md) for the current production outcome.
+The importer selected Python 3.11 tooling; the committed Nix configuration adds
+Python 3.12 and native numerical libraries. The application uses Python 3.12
+inside its virtual environment, with `PIP_USER=false`.
 
 1. Import your chosen GitHub repository after the [GitHub handoff](GITHUB.md),
    or upload the source checkout. Include `.replit`, `modeling/`, `src/` and
    configuration; exclude the Windows environment, raw corpus and caches.
-2. Confirm the imported `.replit` Python 3.12 module and `python --version`.
+2. Confirm Nix's `python3.12 --version`, then create the Preview environment
+   with `python3.12 -m venv .venv`. Confirm `.venv/bin/python --version`.
    Python 3.13 is also supported. No Poetry lock/configuration is used. Automatic
    import guessing is disabled to preserve pins. In Shell run:
 
    ```bash
-   python -m pip install --only-binary=:all: -r modeling/deployment/requirements.lock
-   python -m pip check
+   .venv/bin/python -m pip install --only-binary=:all: -r modeling/deployment/requirements.lock
+   .venv/bin/python -m pip check
    ```
 
 3. Upload the **matching** archive separately, then run `unpack` with its actual
@@ -29,13 +33,13 @@ Preview and an actual published URL remain **unverified**. Nothing was provision
    mode, internal port 8080, `runtime/` and the Replit frame parent. If changing
    ports, keep `[[ports]]` consistent; platform `PORT` overrides `CPSS_PORT`.
    Use the URL Replit actually assigns, without guessing a project name.
-5. Run `python -m modeling.deployment prepare --no-install` in Shell. It explicitly
+5. Run `.venv/bin/python -m modeling.deployment prepare --no-install` in Shell. It explicitly
    downloads/verifies the bundle if a URL is configured; otherwise `runtime/`
-   must already be unpacked. Press Run: `python -m modeling.deployment serve`.
+   must already be unpacked. Press Run: `.venv/bin/python -m modeling.deployment serve`.
    Normal startup does no downloads. Open Preview, require `/readyz` 200, then:
 
    ```bash
-   python -m modeling.deployment smoke --url http://127.0.0.1:8080 --origin https://ACTUAL_PREVIEW_HOST
+   .venv/bin/python -m modeling.deployment smoke --url http://127.0.0.1:8080 --origin https://ACTUAL_PREVIEW_HOST
    ```
 
    Check actual browser search, both views, ratings, source links and hidden
@@ -43,8 +47,9 @@ Preview and an actual published URL remain **unverified**. Nothing was provision
    that exact HTTPS parent in `CPSS_FRAME_ORIGINS` or open a new tab; do not use `*`.
 6. In Publishing choose **Autoscale**. Review displayed machine/max-instance costs
    against your budget before publishing. Build:
-   `python -m modeling.deployment prepare`; run:
-   `python -m modeling.deployment serve`. `.replit` specifies `cloudrun`, with
+   the committed `.replit` command creates `.deploy-venv` using Nix Python 3.12
+   and prepares the verified assets; run:
+   `.deploy-venv/bin/python -m modeling.deployment serve`. `.replit` specifies `cloudrun`, with
    internal 8080 mapped to external 80. Choose x86-64 AVX2 CPU; at least 512 MiB is
    a reasonable first trial from observed ~244 MiB RSS, then measure actual peak
    memory/platform overhead. This is not a Replit capacity measurement.

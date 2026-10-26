@@ -1,8 +1,10 @@
 # GitHub handoff
 
-The local repository is initialized on branch `main`. No commit, remote, push
-or release was created. Source/configuration, tests and documentation are Git
-candidates. Data, artifacts, caches and environments remain on disk and ignored.
+Source is published at https://github.com/SaumyaJoshi2005/CPSS on `main`.
+The verified portable ZIP and checksum are attached to release `v1.0.0-demo`.
+See [actual publication status](PUBLISHED.md). The commands below remain a
+runbook for a new checkout or future updates. Corpus archives, credentials,
+caches and virtual environments remain excluded from Git.
 
 From the project root in PowerShell, after creating your chosen empty GitHub
 repository (without a separate initial README/license):

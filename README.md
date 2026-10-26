@@ -14,6 +14,8 @@ embeddings and reciprocal rank fusion, with original source evidence for results
 | Retrieval evaluation | 24 queries, 814 pooled pairs; awaiting human judgments |
 | Reserved classifier test | 465 problems; not evaluated |
 
+Source and runtime assets are [published on GitHub](https://github.com/SaumyaJoshi2005/CPSS). See the [verified hosting status](modeling/deployment/PUBLISHED.md) for Replit checks and the current public-URL status.
+
 ## Run the application
 
 Run PowerShell from this project folder using the existing environment:
