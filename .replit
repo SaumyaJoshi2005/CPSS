@@ -8,6 +8,7 @@ build = ["bash", "-c", "python3.12 -m venv .venv && .venv/bin/python -m modeling
 run = [".venv/bin/python", "-m", "modeling.deployment", "serve"]
 
 [env]
+PIP_USER = "false"
 CPSS_MODE = "deployment"
 CPSS_PORT = "8080"
 CPSS_RUNTIME_DIR = "runtime"
