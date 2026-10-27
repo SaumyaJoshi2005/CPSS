@@ -1,6 +1,4 @@
-# CPSS - Competitive Programming Semantic Search
-
-**Algorithm-Aware Semantic Retrieval of Competitive Programming Problems Using Hybrid NLP Models**
+# CPSS
 
 A local application for finding competitive-programming problems from a named
 algorithm or a natural-language description. CPSS combines BM25, frozen MiniLM
